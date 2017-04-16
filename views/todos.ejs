@@ -1,0 +1,64 @@
+
+
+	<div class="row">
+
+		<div class="col-md-2 text-right">
+			<h4> Search</h4>
+		</div>
+		<div class="col-md-2">
+			<input type="text" ng-model="search.name">
+		</div>
+		<div style="padding:2em;"></div>
+	</div>
+
+	<div class="row">
+
+		<div ng-repeat="todo in todos | filter: search">
+			<div class="row">
+
+				<div class="col-md-2">
+				</div>
+
+				<div class="col-md-2">
+					<input type="checkbox" ng-model="todo.completed" ng-change="update($index)">
+					<a ng-show="!editing[$index]" href="#" style="pointer-events:none;">{{todo.name}}</a>
+				</div>
+
+				<div class="col-md-3">
+					<button ng-show="!editing[$index]" ng-click="edit($index)">edit</button>
+					<input ng-show="editing[$index]" type="text" ng-model="todo.name">
+					<button ng-show="editing[$index]" ng-click="update($index)">Update</button>
+					<button ng-show="editing[$index]" ng-click="cancel($index)">Cancel</button>
+					<button ng-show="!editing[$index]" ng-click="remove($index)">remove</button>
+				</div>
+
+				<div class="col-md-1 pull-left">
+					<span ng-if="todo.completed" style="color:green;">Completed</span>
+				</div>
+
+				<div class="col-md-4">
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div style="padding:2em;"></div>
+	<div class="row">
+
+		<div class="col-md-2">
+		</div>
+
+		<div class="col-md-2">
+			<h4> Create Task</h4>
+		</div>
+
+		<div class="col-md-5">
+			<input type="text" class="form-control" placeholder="Your Task" name="task" ng-model="newTodo">
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn btn-primary pull-left" ng-click="save()">Create</button>
+		</div>
+	</div>
+
